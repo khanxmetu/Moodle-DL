@@ -264,11 +264,15 @@ class ConfigHelper:
 
     def get_download_path(self) -> str:
         # return path of download location
-        return self.get_property_or('download_path', self.opts.path)
+        return os.path.expanduser(
+            self.get_property_or('download_path', self.opts.path)
+        )
 
     def get_misc_files_path(self) -> str:
         # return path of misc files
-        return self.get_property_or('misc_files_path', self.opts.path)
+        return os.path.expanduser(
+            self.get_property_or('misc_files_path', self.opts.path)
+        )
 
     # ---------------------------- SETTERS ------------------------------------
 
