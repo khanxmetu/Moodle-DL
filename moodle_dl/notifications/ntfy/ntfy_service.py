@@ -19,7 +19,7 @@ class NtfyService(NotificationService):
             logging.debug("ntfy-Notifications not configured, skipping.")
             return False
 
-    def _send_messages(self, messages: List[str]):
+    def _send_messages(self, messages: List[NF.NtfyMessage]):
         """
         Sends an message
         """
@@ -33,7 +33,7 @@ class NtfyService(NotificationService):
 
         for message in messages:
             try:
-                ntfy_shooter.send(**message)
+                ntfy_shooter.send(message.title, message.text, message.source_url)
             except BaseException as e:
                 logging.error(
                     "While sending notification:\n%s",
